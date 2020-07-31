@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class MainTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        HouseGuessController.shared.fetchedReusltsController.delegate = self
     }
     
     // MARK: - Actions
@@ -35,7 +38,7 @@ class MainTableViewController: UITableViewController {
         let guessToDisplay = HouseGuessController.shared.fetchedReusltsController.object(at: indexPath)
         
         cell.guess = guessToDisplay
-        
+        cell.delegate = self
 
         return cell
     }
@@ -82,3 +85,54 @@ class MainTableViewController: UITableViewController {
     
     
 }// End of Class
+
+extension MainTableViewController: HouseGuessTableViewCellDelegate {
+    func houseButtonTapped(_ sender: HouseGuessTableViewCell) {
+        guard let index = tableView.indexPath(for: sender) else { return }
+        let guess = HouseGuessController.shared.fetchedReusltsController.object(at: index)
+        HouseGuessController.shared.updateVisibility(houseGuess: guess)
+        sender.updateViews()
+    }
+}
+
+extension MainTableViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert:
+            let indexSet = IndexSet(integer: sectionIndex)
+            tableView.insertSections(indexSet, with: .automatic)
+        case .delete:
+            let indexSet = IndexSet(integer: sectionIndex)
+            tableView.deleteSections(indexSet, with: .automatic)
+        default:
+            fatalError()
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .delete:
+            guard let indexPath = indexPath else { break }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        case .insert:
+            guard let newIndexPath = newIndexPath else { break }
+            tableView.insertRows(at: [newIndexPath], with: .fade)
+        case .move:
+            guard let oldIndexPath = indexPath, let newIndexPath = newIndexPath else { break }
+            tableView.moveRow(at: oldIndexPath, to: newIndexPath)
+        case.update:
+            guard let indexPath = indexPath else { break }
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        default:
+            fatalError()
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.endUpdates()
+    }
+}

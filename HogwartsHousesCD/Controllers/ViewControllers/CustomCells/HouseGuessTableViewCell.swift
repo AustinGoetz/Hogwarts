@@ -8,6 +8,11 @@
 
 import UIKit
 
+// MARK: - Protocols
+protocol HouseGuessTableViewCellDelegate: class {
+    func houseButtonTapped(_ sender: HouseGuessTableViewCell)
+}
+
 class HouseGuessTableViewCell: UITableViewCell {
     
     var guess: HouseGuess? {
@@ -15,6 +20,8 @@ class HouseGuessTableViewCell: UITableViewCell {
             updateViews()
         }
     }
+    
+    weak var delegate: HouseGuessTableViewCellDelegate?
 
     // MARK: - Outlets
     @IBOutlet weak var personGuessLabel: UILabel!
@@ -22,6 +29,7 @@ class HouseGuessTableViewCell: UITableViewCell {
     
     // MARK: - Actions
     @IBAction func houseButtonTapped(_ sender: Any) {
+        delegate?.houseButtonTapped(self)
     }
     
     // MARK: - Helpers
@@ -29,5 +37,16 @@ class HouseGuessTableViewCell: UITableViewCell {
         guard let guess = guess else { return }
         
         personGuessLabel.text = guess.guessName
+        updateButtonFor(guess: guess)
+    }
+    
+    func updateButtonFor(guess: HouseGuess) {
+        if guess.isVisible {
+            if let house = guess.house {
+                houseImageButton.setImage(UIImage(named: house), for: .normal)
+            }
+        } else {
+            houseImageButton.setImage(#imageLiteral(resourceName: "hogwarts"), for: .normal)
+        }
     }
 }
