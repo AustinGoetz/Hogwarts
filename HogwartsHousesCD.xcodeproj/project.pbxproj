@@ -16,6 +16,8 @@
 		2A9E76E024D3996B0035B2B7 /* HogwartsHouseCD+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E76DF24D3996B0035B2B7 /* HogwartsHouseCD+Convenience.swift */; };
 		2A9E76E224D39A480035B2B7 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E76E124D39A480035B2B7 /* CoreDataStack.swift */; };
 		2A9E76E724D39DA50035B2B7 /* HouseGuessController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E76E624D39DA50035B2B7 /* HouseGuessController .swift */; };
+		2A9E76EB24D3A8910035B2B7 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E76EA24D3A8910035B2B7 /* MainTableViewController.swift */; };
+		2A9E76EE24D3ABFB0035B2B7 /* HouseGuessTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E76ED24D3ABFB0035B2B7 /* HouseGuessTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		2A9E76DF24D3996B0035B2B7 /* HogwartsHouseCD+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HogwartsHouseCD+Convenience.swift"; sourceTree = "<group>"; };
 		2A9E76E124D39A480035B2B7 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		2A9E76E624D39DA50035B2B7 /* HouseGuessController .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HouseGuessController .swift"; sourceTree = "<group>"; };
+		2A9E76EA24D3A8910035B2B7 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		2A9E76ED24D3ABFB0035B2B7 /* HouseGuessTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseGuessTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +90,8 @@
 		2A9E76E324D39D5F0035B2B7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2A9E76E624D39DA50035B2B7 /* HouseGuessController .swift */,
+				2A9E76E924D3A8740035B2B7 /* ModelControllers */,
+				2A9E76E824D3A8690035B2B7 /* ViewControllers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -106,6 +111,31 @@
 				2A9E76E124D39A480035B2B7 /* CoreDataStack.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2A9E76E824D3A8690035B2B7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2A9E76EC24D3ABD60035B2B7 /* CustomCells */,
+				2A9E76EA24D3A8910035B2B7 /* MainTableViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2A9E76E924D3A8740035B2B7 /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2A9E76E624D39DA50035B2B7 /* HouseGuessController .swift */,
+			);
+			path = ModelControllers;
+			sourceTree = "<group>";
+		};
+		2A9E76EC24D3ABD60035B2B7 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				2A9E76ED24D3ABFB0035B2B7 /* HouseGuessTableViewCell.swift */,
+			);
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +215,8 @@
 				2A9E76E724D39DA50035B2B7 /* HouseGuessController .swift in Sources */,
 				2A9E76E024D3996B0035B2B7 /* HogwartsHouseCD+Convenience.swift in Sources */,
 				2A9E76CA24D393610035B2B7 /* SceneDelegate.swift in Sources */,
+				2A9E76EE24D3ABFB0035B2B7 /* HouseGuessTableViewCell.swift in Sources */,
+				2A9E76EB24D3A8910035B2B7 /* MainTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +362,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G359J97949;
-				INFOPLIST_FILE = HogwartsHousesCD/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/HogwartsHousesCD/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -348,7 +380,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G359J97949;
-				INFOPLIST_FILE = HogwartsHousesCD/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/HogwartsHousesCD/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
